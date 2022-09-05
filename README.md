@@ -4,7 +4,9 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+基础框架： [Nest](https://github.com/nestjs/nest)
+数据库 ORM：[Typeorm](https://typeorm.io/)
+docs: [swagger]
 
 ## Installation
 
