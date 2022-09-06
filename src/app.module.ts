@@ -8,8 +8,25 @@ import { ConfigService, ConfigModule } from '@nestjs/config';
 import {
   WinstonModule,
   utilities as nestWinstonModuleUtilities,
+  WINSTON_MODULE_NEST_PROVIDER,
 } from 'nest-winston';
 import * as winston from 'winston';
+import * as DailyRotateFile from 'winston-daily-rotate-file';
+winston.transports.DailyRotateFile = DailyRotateFile;
+
+const rotateFileParams = {
+  datePattern: 'YYYY-MM-DD-HH',
+  zippedArchive: true,
+  maxSize: '20m',
+  maxFiles: '14d',
+};
+
+const nestLikeParams = {
+  colors: false,
+  prettyPrint: false,
+};
+
+const logLevels = ['info', 'debug', 'error', 'warn'];
 
 @Module({
   imports: [
@@ -25,38 +42,21 @@ import * as winston from 'winston';
             nestWinstonModuleUtilities.format.nestLike(),
           ),
         }),
-        new winston.transports.File({
-          filename: 'logs/info.log',
-          level: 'info',
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            nestWinstonModuleUtilities.format.nestLike(),
-          ),
-        }),
-        new winston.transports.File({
-          filename: 'logs/warn.log',
-          level: 'warn',
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            nestWinstonModuleUtilities.format.nestLike(),
-          ),
-        }),
-        new winston.transports.File({
-          filename: 'logs/error.log',
-          level: 'error',
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            nestWinstonModuleUtilities.format.nestLike(),
-          ),
-        }),
-        new winston.transports.File({
-          filename: 'logs/debug.log',
-          level: 'debug',
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            nestWinstonModuleUtilities.format.nestLike(),
-          ),
-        }),
+        ...logLevels.map(
+          (level) =>
+            new winston.transports.DailyRotateFile({
+              filename: `logs/nest-%DATE%-${level}.log`,
+              level: level,
+              format: winston.format.combine(
+                winston.format.timestamp(),
+                nestWinstonModuleUtilities.format.nestLike(
+                  WINSTON_MODULE_NEST_PROVIDER,
+                  nestLikeParams,
+                ),
+              ),
+              ...rotateFileParams,
+            }),
+        ),
       ],
     }),
     TypeOrmModule.forRootAsync({
