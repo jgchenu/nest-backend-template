@@ -13,8 +13,19 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    this.logger.info('get getHello()', {
-      data: 111,
+    this.logger.info({
+      message: 'this is hello info',
+      context: AppController.name,
+      ms: 50,
+      a: 1,
+      b: 2,
+    });
+    this.logger.warn({
+      message: 'this is hello error',
+      context: AppController.name,
+      ms: 100,
+      a: 1,
+      b: 2,
     });
     return this.appService.getHello();
   }

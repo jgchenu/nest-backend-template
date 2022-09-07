@@ -8,25 +8,13 @@ import { ConfigService, ConfigModule } from '@nestjs/config';
 import {
   WinstonModule,
   utilities as nestWinstonModuleUtilities,
-  WINSTON_MODULE_NEST_PROVIDER,
 } from 'nest-winston';
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 winston.transports.DailyRotateFile = DailyRotateFile;
 
-const rotateFileParams = {
-  datePattern: 'YYYY-MM-DD-HH',
-  zippedArchive: true,
-  maxSize: '20m',
-  maxFiles: '14d',
-};
-
-const nestLikeParams = {
-  colors: false,
-  prettyPrint: false,
-};
-
-const logLevels = ['info', 'debug', 'error', 'warn'];
+const logLevels = ['info', 'error'];
+import * as _ from 'lodash';
 
 @Module({
   imports: [
@@ -35,10 +23,20 @@ const logLevels = ['info', 'debug', 'error', 'warn'];
       envFilePath: [envConfig.path],
     }),
     WinstonModule.forRoot({
+      format: winston.format.combine(
+        winston.format.uncolorize(),
+        winston.format.timestamp(),
+        winston.format.printf(
+          ({ context, level, timestamp, message, ms, ...meta }) => {
+            return `${timestamp} [${level}] ${message}  ${
+              context ? `[${context}]` : ''
+            } ${ms ? `${ms}ms` : ''} meta: ${JSON.stringify(meta)}`;
+          },
+        ),
+      ),
       transports: [
         new winston.transports.Console({
           format: winston.format.combine(
-            winston.format.timestamp(),
             nestWinstonModuleUtilities.format.nestLike(),
           ),
         }),
@@ -47,14 +45,10 @@ const logLevels = ['info', 'debug', 'error', 'warn'];
             new winston.transports.DailyRotateFile({
               filename: `logs/nest-%DATE%-${level}.log`,
               level: level,
-              format: winston.format.combine(
-                winston.format.timestamp(),
-                nestWinstonModuleUtilities.format.nestLike(
-                  WINSTON_MODULE_NEST_PROVIDER,
-                  nestLikeParams,
-                ),
-              ),
-              ...rotateFileParams,
+              datePattern: 'YYYY-MM-DD',
+              zippedArchive: true,
+              maxSize: '20m',
+              maxFiles: '14d',
             }),
         ),
       ],
