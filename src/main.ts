@@ -1,15 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './core/filter/http-exception.filter';
-import { TransformInterceptor } from './core/interceptor/transform.interceptor';
+import { HttpExceptionFilter } from './common/filter/http-exception.filter';
+import { TransformInterceptor } from './common/interceptor/transform.interceptor';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { ErrorExceptionFilter } from './common/filter/error-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalFilters(new HttpExceptionFilter());
-
+  app.useGlobalFilters(new HttpExceptionFilter(), new ErrorExceptionFilter());
   app.setGlobalPrefix('api');
   app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalPipes(new ValidationPipe());

@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { CatModule } from './cat/cat.module';
-import envConfig from './config';
+import { AppController } from '$src/app.controller';
+import { AppService } from '$src/app.service';
+import envConfig from '$src/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService, ConfigModule } from '@nestjs/config';
 import {
   WinstonModule,
   utilities as nestWinstonModuleUtilities,
 } from 'nest-winston';
+import { CatModule } from '$src/modules/cat/cat.module';
+import { HealthModule } from '$src/modules/health/health.module';
+import { MetricsModule } from '$src/modules/metrics/metrics.module';
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as _ from 'lodash';
@@ -74,6 +76,8 @@ const logLevels = ['info', 'error'];
       },
     }),
     CatModule,
+    HealthModule,
+    MetricsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

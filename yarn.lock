@@ -671,6 +671,13 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@nestjs/axios@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.npmmirror.com/@nestjs/axios/-/axios-0.1.0.tgz#6cf93df11ef93b598b3c7411adb980eedd13b3e3"
+  integrity sha512-b2TT2X6BFbnNoeteiaxCIiHaFcSbVW+S5yygYqiIq5i6H77yIU3IVuLdpQkHq8/EqOWFwMopLN8jdkUT71Am9w==
+  dependencies:
+    axios "0.27.2"
+
 "@nestjs/cli@^9.0.0":
   version "9.1.1"
   resolved "https://registry.npmmirror.com/@nestjs/cli/-/cli-9.1.1.tgz"
@@ -768,6 +775,14 @@
     lodash "4.17.21"
     path-to-regexp "3.2.0"
     swagger-ui-dist "4.14.0"
+
+"@nestjs/terminus@^9.1.1":
+  version "9.1.1"
+  resolved "https://registry.npmmirror.com/@nestjs/terminus/-/terminus-9.1.1.tgz#fd346d7d574d3635c1472768aa16c90c66b7dc36"
+  integrity sha512-8XrXOTseUO8eQZYm/JZbRnznpyS1sVvMkHLW8BOi02s7Bzxw3UPiFOOF34ueKp4ONUjUCoKq36BmwY00dpjofA==
+  dependencies:
+    boxen "5.1.2"
+    check-disk-space "3.3.1"
 
 "@nestjs/testing@^9.0.0":
   version "9.0.11"
@@ -1341,6 +1356,13 @@ ajv@^6.10.0, ajv@^6.12.4, ajv@^6.12.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
+ansi-align@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.npmmirror.com/ansi-align/-/ansi-align-3.0.1.tgz#0cdf12e111ace773a86e9a1fad1225c43cb19a59"
+  integrity sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==
+  dependencies:
+    string-width "^4.1.0"
+
 ansi-colors@4.1.3:
   version "4.1.3"
   resolved "https://registry.npmmirror.com/ansi-colors/-/ansi-colors-4.1.3.tgz"
@@ -1442,6 +1464,14 @@ asynckit@^0.4.0:
   resolved "https://registry.npmmirror.com/asynckit/-/asynckit-0.4.0.tgz"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
+axios@0.27.2:
+  version "0.27.2"
+  resolved "https://registry.npmmirror.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
+  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
+  dependencies:
+    follow-redirects "^1.14.9"
+    form-data "^4.0.0"
+
 babel-jest@^28.1.3:
   version "28.1.3"
   resolved "https://registry.npmmirror.com/babel-jest/-/babel-jest-28.1.3.tgz"
@@ -1517,6 +1547,11 @@ binary-extensions@^2.0.0:
   resolved "https://registry.npmmirror.com/binary-extensions/-/binary-extensions-2.2.0.tgz"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
 
+bintrees@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmmirror.com/bintrees/-/bintrees-1.0.2.tgz#49f896d6e858a4a499df85c38fb399b9aff840f8"
+  integrity sha512-VOMgTMwjAaUG580SXn3LacVgjurrbMme7ZZNYGSSV7mmtY6QQRh0Eg3pwIcntQ77DErK1L0NxkbetjcoXzVwKw==
+
 bl@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npmmirror.com/bl/-/bl-4.1.0.tgz"
@@ -1543,6 +1578,20 @@ body-parser@1.20.0:
     raw-body "2.5.1"
     type-is "~1.6.18"
     unpipe "1.0.0"
+
+boxen@5.1.2:
+  version "5.1.2"
+  resolved "https://registry.npmmirror.com/boxen/-/boxen-5.1.2.tgz#788cb686fc83c1f486dfa8a40c68fc2b831d2b50"
+  integrity sha512-9gYgQKXx+1nP8mP7CzFyaUARhg7D3n1dF/FnErWmu9l6JvGpNUN278h0aSb+QjoiKSWG+iZ3uHrcqk0qrY9RQQ==
+  dependencies:
+    ansi-align "^3.0.0"
+    camelcase "^6.2.0"
+    chalk "^4.1.0"
+    cli-boxes "^2.2.1"
+    string-width "^4.2.2"
+    type-fest "^0.20.2"
+    widest-line "^3.1.0"
+    wrap-ansi "^7.0.0"
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -1679,6 +1728,11 @@ chardet@^0.7.0:
   resolved "https://registry.npmmirror.com/chardet/-/chardet-0.7.0.tgz"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
+check-disk-space@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.npmmirror.com/check-disk-space/-/check-disk-space-3.3.1.tgz#10c4c8706fdd16d3e5c3572a16aa95efd0b4d40b"
+  integrity sha512-iOrT8yCZjSnyNZ43476FE2rnssvgw5hnuwOM0hm8Nj1qa0v4ieUUEbCyxxsEliaoDUb/75yCOL71zkDiDBLbMQ==
+
 chokidar@3.5.3, chokidar@^3.5.3:
   version "3.5.3"
   resolved "https://registry.npmmirror.com/chokidar/-/chokidar-3.5.3.tgz"
@@ -1721,6 +1775,11 @@ class-validator@^0.13.2:
   dependencies:
     libphonenumber-js "^1.9.43"
     validator "^13.7.0"
+
+cli-boxes@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.npmmirror.com/cli-boxes/-/cli-boxes-2.2.1.tgz#ddd5035d25094fce220e9cab40a45840a440318f"
+  integrity sha512-y4coMcylgSCdVinjiDBuR8PCC2bLjyGTwEmPb9NHR/QaNU6EUOXcTY/s6VjGMD6ENSEaeQYHCY0GNGS5jfMwPw==
 
 cli-cursor@^3.1.0:
   version "3.1.0"
@@ -2512,6 +2571,11 @@ fn.name@1.x.x:
   version "1.1.0"
   resolved "https://registry.npmmirror.com/fn.name/-/fn.name-1.1.0.tgz#26cad8017967aea8731bc42961d04a3d5988accc"
   integrity sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==
+
+follow-redirects@^1.14.9:
+  version "1.15.1"
+  resolved "https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
+  integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
 
 fork-ts-checker-webpack-plugin@7.2.13:
   version "7.2.13"
@@ -4045,6 +4109,13 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.npmmirror.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
+prom-client@^14.1.0:
+  version "14.1.0"
+  resolved "https://registry.npmmirror.com/prom-client/-/prom-client-14.1.0.tgz#049609859483d900844924df740722c76ed1fdbb"
+  integrity sha512-iFWCchQmi4170omLpFXbzz62SQTmPhtBL35v0qGEVRHKcqIeiexaoYeP0vfZTujxEq3tA87iqOdRbC9svS1B9A==
+  dependencies:
+    tdigest "^0.1.1"
+
 prompts@^2.0.1:
   version "2.4.2"
   resolved "https://registry.npmmirror.com/prompts/-/prompts-2.4.2.tgz"
@@ -4486,7 +4557,7 @@ string-length@^4.0.1:
     char-regex "^1.0.2"
     strip-ansi "^6.0.0"
 
-string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
+string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.npmmirror.com/string-width/-/string-width-4.2.3.tgz"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -4616,6 +4687,13 @@ tapable@^2.1.1, tapable@^2.2.0, tapable@^2.2.1:
   version "2.2.1"
   resolved "https://registry.npmmirror.com/tapable/-/tapable-2.2.1.tgz"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
+
+tdigest@^0.1.1:
+  version "0.1.2"
+  resolved "https://registry.npmmirror.com/tdigest/-/tdigest-0.1.2.tgz#96c64bac4ff10746b910b0e23b515794e12faced"
+  integrity sha512-+G0LLgjjo9BZX2MfdvPfH+MKLCrxlXSYec5DaPYP1fe6Iyhf0/fSmJ0bFiZ1F8BT6cGXl2LpltQptzjXKWEkKA==
+  dependencies:
+    bintrees "1.0.2"
 
 terminal-link@^2.0.0:
   version "2.1.1"
@@ -5014,6 +5092,13 @@ which@^2.0.1:
   integrity sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==
   dependencies:
     isexe "^2.0.0"
+
+widest-line@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npmmirror.com/widest-line/-/widest-line-3.1.0.tgz#8292333bbf66cb45ff0de1603b136b7ae1496eca"
+  integrity sha512-NsmoXalsWVDMGupxZ5R08ka9flZjjiLvHVAWYOKtiKM8ujtZWr9cRffak+uSE48+Ob8ObalXpwyeUiyDD6QFgg==
+  dependencies:
+    string-width "^4.0.0"
 
 windows-release@^4.0.0:
   version "4.0.0"
