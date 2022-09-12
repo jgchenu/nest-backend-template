@@ -11,10 +11,11 @@ import {
 } from 'nest-winston';
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
+import * as _ from 'lodash';
+
 winston.transports.DailyRotateFile = DailyRotateFile;
 
 const logLevels = ['info', 'error'];
-import * as _ from 'lodash';
 
 @Module({
   imports: [
