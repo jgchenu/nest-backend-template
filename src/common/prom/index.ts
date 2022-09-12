@@ -1,4 +1,4 @@
-import { Histogram, Counter, register } from 'prom-client';
+import { Histogram, Counter } from 'prom-client';
 
 export const ErrorCounter = new Counter({
   name: 'custom_error_total',
@@ -9,14 +9,14 @@ export const ErrorCounter = new Counter({
 export const ResponseTimeHistogram = new Histogram({
   name: 'http_response_time_ms',
   help: 'ms to handle a request',
-  labelNames: ['method', 'routerName', 'status'],
+  labelNames: ['method', 'path', 'status'],
   buckets: [100, 200, 500, 1000, 2000, 5000],
 });
 
 export const RequestTotalCounter = new Counter({
   name: 'http_request_total',
   help: 'number of requests to a route',
-  labelNames: ['method', 'path', 'routerName', 'status'],
+  labelNames: ['method', 'path', 'status'],
 });
 
 export const DurationHistogram = new Histogram({

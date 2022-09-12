@@ -2,7 +2,7 @@ import { CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { register } from 'prom-client';
 import { map, Observable, tap } from 'rxjs';
-import { ResponseTimeHistogram } from '../prom';
+import { RequestTotalCounter, ResponseTimeHistogram } from '../prom';
 
 export class TransformInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
@@ -24,6 +24,11 @@ export class TransformInterceptor implements NestInterceptor {
           path,
           String(response.statusCode),
         ).observe(delay);
+        RequestTotalCounter.labels(
+          method,
+          path,
+          String(response.statusCode),
+        ).inc();
       }),
       map((data) => {
         return {

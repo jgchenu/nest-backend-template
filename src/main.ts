@@ -5,11 +5,16 @@ import { TransformInterceptor } from './common/interceptor/transform.interceptor
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { ErrorExceptionFilter } from './common/filter/error-exception.filter';
+import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+import { Logger } from 'winston';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  app.useGlobalFilters(new ErrorExceptionFilter(), new HttpExceptionFilter());
+  const wisLogger: Logger = app.get(WINSTON_MODULE_PROVIDER);
+  app.useGlobalFilters(
+    new ErrorExceptionFilter(wisLogger),
+    new HttpExceptionFilter(),
+  );
   app.setGlobalPrefix('api');
   app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalPipes(new ValidationPipe());
