@@ -9,7 +9,7 @@ import { ErrorExceptionFilter } from './common/filter/error-exception.filter';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalFilters(new HttpExceptionFilter(), new ErrorExceptionFilter());
+  app.useGlobalFilters(new ErrorExceptionFilter(), new HttpExceptionFilter());
   app.setGlobalPrefix('api');
   app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalPipes(new ValidationPipe());

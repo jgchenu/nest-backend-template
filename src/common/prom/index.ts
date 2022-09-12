@@ -9,7 +9,7 @@ export const ErrorCounter = new Counter({
 export const ResponseTimeHistogram = new Histogram({
   name: 'http_response_time_ms',
   help: 'ms to handle a request',
-  labelNames: ['method', 'path', 'routerName', 'status'],
+  labelNames: ['method', 'routerName', 'status'],
   buckets: [100, 200, 500, 1000, 2000, 5000],
 });
 

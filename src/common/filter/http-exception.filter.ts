@@ -5,7 +5,6 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { recordError } from '../prom';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -31,11 +30,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       code: -1,
     };
 
-    recordError('HTTP_EXCEPTION', errorResponse.message);
-
     // 设置返回的状态码， 请求头，发送错误信息
-    response.status(status);
-    response.contentType('application/json');
-    response.send(errorResponse);
+    response.status(status).contentType('application/json').json(errorResponse);
   }
 }

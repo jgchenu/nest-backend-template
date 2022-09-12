@@ -1,19 +1,26 @@
-import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common';
+import {
+  ArgumentsHost,
+  Catch,
+  ExceptionFilter,
+  HttpException,
+} from '@nestjs/common';
 import { Response } from 'express';
 import { recordError } from '../prom';
 
-@Catch()
+@Catch(Error)
 export class ErrorExceptionFilter implements ExceptionFilter {
-  catch(exception: unknown, host: ArgumentsHost) {
-    if (!(exception instanceof Error)) {
-      return;
-    }
+  catch(exception: Error, host: ArgumentsHost) {
+    console.log(exception.constructor);
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     recordError(exception.name, exception.message);
-    response.status(500);
-    response.send(
-      `Internal Error,error: ${exception.name} message: ${exception.message}`,
-    );
+    if (exception instanceof HttpException) {
+      throw exception;
+    } else {
+      response.status(500).json({
+        name: exception.name || 'unknown name',
+        message: exception.message || 'unknown message',
+      });
+    }
   }
 }

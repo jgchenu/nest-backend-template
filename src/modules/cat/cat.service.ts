@@ -49,8 +49,8 @@ export class CatService {
   }
 
   // 获取指定文章
-  async findById(id) {
-    return await this.catRepository.findOne(id);
+  async findById(id: number) {
+    return await this.catRepository.findOneBy({ id });
   }
 
   // 更新文章

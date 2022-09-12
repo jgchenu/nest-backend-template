@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CatService } from './cat.service';
 import { CreateCatDto } from './cat.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
@@ -18,5 +18,11 @@ export class CatController {
   @Post()
   createCat(@Body() post: CreateCatDto) {
     return this.catService.create(post);
+  }
+
+  @ApiOperation({ summary: '根据id获取猫猫' })
+  @Get(':id')
+  getCatById(@Param() params: { id: string }) {
+    return this.catService.findById(Number(params.id));
   }
 }
