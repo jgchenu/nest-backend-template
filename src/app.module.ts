@@ -13,7 +13,6 @@ import { HealthModule } from '$src/modules/health/health.module';
 import { MetricsModule } from '$src/modules/metrics/metrics.module';
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
-import * as _ from 'lodash';
 
 winston.transports.DailyRotateFile = DailyRotateFile;
 

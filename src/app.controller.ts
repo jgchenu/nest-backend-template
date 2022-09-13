@@ -12,7 +12,12 @@ export class AppController {
     private readonly logger: Logger,
   ) {}
 
-  @Get()
+  @Get('hello')
+  getHello() {
+    return this.appService.getHello();
+  }
+
+  @Get('testLog')
   testLog(): string {
     this.logger.info({
       message: 'this is hello info',
