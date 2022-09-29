@@ -12,7 +12,6 @@ import { recordError, RequestTotalCounter } from '../prom';
 export class ErrorExceptionFilter implements ExceptionFilter {
   constructor(private logger: Logger) {}
   catch(exception: Error, host: ArgumentsHost) {
-    console.log(exception.constructor);
     const ctx = host.switchToHttp();
     const request = ctx.getRequest<Request>();
     const path = request.route?.path || request.path || request.url;
@@ -30,7 +29,9 @@ export class ErrorExceptionFilter implements ExceptionFilter {
         message: (exception.message || 'unknown message').substring(0, 100),
       };
       this.logger.error(error);
-      response.status(500).json({
+      response.status(200).json({
+        data: {},
+        code: -1,
         name: exception.name || 'unknown name',
         message: (exception.message || 'unknown message').substring(0, 100),
       });
